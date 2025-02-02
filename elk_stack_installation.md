@@ -124,6 +124,11 @@ tcp               LISTEN             0                   128                    
 ![](attachments/Pasted%20image%2020250129232845.png)
 - Login with user `elastic` and the password that was generated in the beginning.
 
+## Basic Setup Workflow
+- - First, create an **Agent Policy**, which defines the configurations that will be applied to the hosts assigned to it.
+- - Add as many **integrations** as needed within the Agent Policy.
+- Finally, enroll **agents** into the Agent Policy to start monitoring them.
+
 ## Setting up Fleet Server
 
 > Machine's IP: 10.0.0.6
@@ -183,6 +188,7 @@ cd elastic-agent-8.17.1-windows-x86_64
 
 ![](attachments/Pasted%20image%2020250130150827.png)
 - Oops we received an error.
+
 ![](attachments/Pasted%20image%2020250130150957.png)
 - Use this command to generate encryption keys.
 ```
