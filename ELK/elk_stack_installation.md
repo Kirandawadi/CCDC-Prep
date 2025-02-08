@@ -120,7 +120,7 @@ tcp               LISTEN             0                   128                    
 ```
 - Restart `nginx` service with `sudo systemctl restart nginx`
 - Now you can access Kibana dashboard on port 80 of the server.
-![](attachments/Pasted%20image%2020250129232845.png)
+![](../attachments/Pasted%20image%2020250129232845.png)
 - Login with user `elastic` and the password that was generated in the beginning.
 
 ## Basic Setup Workflow
@@ -133,12 +133,12 @@ tcp               LISTEN             0                   128                    
 > Machine's IP: 10.0.0.6
 
 - Add `Fleet Server` integration to Kibana dashboard. Fleet Server is a component of the Elastic Stack used to centrally manage Elastic Agents.
-![](attachments/Pasted%20image%2020250129234250.png)
+![](../attachments/Pasted%20image%2020250129234250.png)
 - I went with default settings.
-![](attachments/Pasted%20image%2020250129234626.png)
+![](../attachments/Pasted%20image%2020250129234626.png)
 
 - Click on `Add Agent` and `Enroll in Fleet`. Add your Fleet Server's IP address with port `8220`. You can use Fleet Server's Public IP Address as well.
-![](attachments/Pasted%20image%2020250130141855.png)
+![](../attachments/Pasted%20image%2020250130141855.png)
 - We are using separate machine in order to install `Fleet Server Agent`.  Install it using the following commands:
 ```
 curl -L -O https://artifacts.elastic.co/downloads/beats/elastic-agent/elastic-agent-8.17.1-linux-x86_64.tar.gz 
@@ -158,13 +158,13 @@ sudo ./elastic-agent install \
 - `/usr/local/etc/ssl/certs/elastic/http_ca.crt` is not present by default. I copied the same certificate from Elastic machine from `/etc/elasticsearch/certs/http_ca.crt`.
 ![](attachments/Pasted%20image%2020250130141952.png)
 - Finally it is successfully installed and you can verify this from UI as well.
-![](attachments/Pasted%20image%2020250130142048.png)
+![](../attachments/Pasted%20image%2020250130142048.png)
 
 ## Adding agents 
 
 > Windows Agent IP: 10.0.0.5 
 - Now we will install `elastic-agent` on those machines which we want to monitor. These agents will forward their system logs (and configured logs) to Elasticsearch.
-![](attachments/Pasted%20image%2020250130143330.png)
+![](../attachments/Pasted%20image%2020250130143330.png)
 
 ```powershell
 $ProgressPreference = 'SilentlyContinue' 
@@ -174,21 +174,21 @@ cd elastic-agent-8.17.1-windows-x86_64
 .\elastic-agent.exe install --url=https://20.115.80.200:8220 --enrollment-token=SEFkYnVKUUJ3RVZCdmxFcGpDcHE6UkhHbk1EWmVRc2FJQjBLelVsb3AxUQ==
 ```
 - The elastic agent is successfully installed on this windows machine.
-![](attachments/Pasted%20image%2020250130144500.png)
-![](attachments/Pasted%20image%2020250130144633.png)
+![](../attachments/Pasted%20image%2020250130144500.png)
+![](../attachments/Pasted%20image%2020250130144633.png)
 - Lets verify this from Kibana's `Discover` tab.
-![](attachments/Pasted%20image%2020250130155431.png)
+![](../attachments/Pasted%20image%2020250130155431.png)
 ## Enable Endpoint Security
 - `Elastic Defend` is an integration available that has a wide range of security capabilities.
-![](attachments/Pasted%20image%2020250130150314.png)
-![](attachments/Pasted%20image%2020250130150534.png)
+![](../attachments/Pasted%20image%2020250130150314.png)
+![](../attachments/Pasted%20image%2020250130150534.png)
 - Lets add this integration to our already existing hosts. There are 2 of them currently: one is the Windows server that we installed it on and another is the Fleet-Server machine itself (Linux).
-![](attachments/Pasted%20image%2020250130150759.png)
+![](../attachments/Pasted%20image%2020250130150759.png)
 
-![](attachments/Pasted%20image%2020250130150827.png)
+![](../attachments/Pasted%20image%2020250130150827.png)
 - Oops we received an error.
 
-![](attachments/Pasted%20image%2020250130150957.png)
+![](../attachments/Pasted%20image%2020250130150957.png)
 - Use this command to generate encryption keys.
 ```
 root@elastic:~# /usr/share/kibana/bin/kibana-encryption-keys generate
@@ -204,9 +204,9 @@ xpack.security.encryptionKey: 209d18e6c7cceb1fe5ce6bee2ab31ee6
 - With this, you should be able to save and deploy changes.
 
 ## Enable Detection Rules
-![](attachments/Pasted%20image%2020250130152420.png)
+![](../attachments/Pasted%20image%2020250130152420.png)
 - Lets enable all the detection rules.
-![](attachments/Pasted%20image%2020250130152453.png)
+![](../attachments/Pasted%20image%2020250130152453.png)
 - It has a wide range of detection rules for different sources. We are particularly interested in Linux and Windows sources.
 
 ## Triggering a sample detection rule
@@ -215,7 +215,7 @@ Let's add a new user in `fleet-server` host.
 sudo useradd -m -s /bin/bash username
 ```
 - We can see the alert `Linux User Account Creation` being fired. 
-![](attachments/Pasted%20image%2020250130153846.png)
+![](../attachments/Pasted%20image%2020250130153846.png)
 - Everything is working as expected.
 
 ## Summary
