@@ -1,14 +1,13 @@
 #!/bin/bash
 # Will automatically enumerate and remove dangerous SUID binaries.
 
+echo "==================================="
+echo " SUIDBuster - SUID Exploit Finder Tool "
+echo "==================================="
+
+echo "[+] Looking for standard exploitable SUID binaries...."
+
 while true; do
-
-    echo "==================================="
-    echo " SUIDBuster - SUID Exploit Finder Tool "
-    echo "==================================="
-
-    echo "[+] Looking for standard exploitable SUID binaries...."
-
 
     r=$(find / -perm -u=s -type f 2>/dev/null | rev | cut -d'/' -f 1 | rev)
 
