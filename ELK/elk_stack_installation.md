@@ -1,4 +1,3 @@
-
 ## Elasticsearch Installation
 
 > Machine's IP: 10.0.0.4
@@ -16,7 +15,7 @@ sudo apt update
 ```bash
 sudo apt install elasticsearch
 ```
-- This generates password for the elastic built-in superuser. Make sure to note it.
+- This generates password for the elastic built-in superuser. **Make sure to note it.**
 - Start the Elasticsearch service with `systemctl`
 ```
 sudo systemctl start elasticsearch
@@ -194,7 +193,7 @@ cd elastic-agent-8.17.1-windows-x86_64
 ```
 root@elastic:~# /usr/share/kibana/bin/kibana-encryption-keys generate
 ```
-- This will generate three settings that we need to paste at the end of `/etc/kibana.kibana.yml` file.
+- This will generate three settings that we need to paste at the end of `/etc/kibana/kibana.yml` file.
 ```
 Settings:
 xpack.encryptedSavedObjects.encryptionKey: af6e821ff234ad2ff2c1b3c809b548bd
