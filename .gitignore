@@ -2,6 +2,7 @@
 .obsidian/*
 .trash/*
 .DS_Store
+CCDC*/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
