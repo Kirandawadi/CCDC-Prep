@@ -125,4 +125,3 @@
 This plan ensures a **high cost-to-benefit ratio** while maximizing defense effectiveness during CCDC.
 
 - Don't forget to check ~/.bash_history (Sometimes the commands they used to make machine vulnerable is exposed).
-- 

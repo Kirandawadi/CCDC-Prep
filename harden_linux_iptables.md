@@ -3,12 +3,10 @@
 
 This guide demonstrates how to harden your Linux box using `iptables`, ensuring that only SSH (port 22), DNS (port 53), and HTTP (port 80) are accessible from the outside while allowing all outgoing connections.
 
-## 1. Flush Existing Rules (Optional but Recommended)
+## 1. Flush Existing Rules
 
 ```bash
 iptables -F
-iptables -X
-iptables -Z
 ```
 
 ## 2. Allow SSH First (Port 22)
