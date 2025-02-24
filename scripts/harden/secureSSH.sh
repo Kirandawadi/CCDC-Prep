@@ -1,12 +1,26 @@
 #!/bin/bash
+#Works only for Linux SSH configurations
 #Script to rewrite the sshd_config file to secure the SSH server
 #Based on testing, prepending the proper configuration to the start of the sshd_config file,
 #the service reads the first instance and sets that value. Further changes are not implemented,
 #i.e., the first time a configuration is specified, it is locked.
 #Crude way to do it, instead of replacing it with a secure configuration file, but it works.
 
+
+#Identifies the host OS
+if [[ "$(uname -s)" == "Linux" && ! -f /proc/sys/fs/binfmt_misc/WSLInterop ]]; then
+    #Checks if run as root
+    if [[ $EUID -ne 0 ]]; then
+        echo "Not running as root. Please use sudo."
+        exit 1
+    fi
+else
+    echo "Unknown OS. Quitting"
+    exit 1
+fi
+
 #Makes sure file is not read/append only and has all necessary permissions to complete its job
-#chattr -ia /etc/ssh/sshd_config 
+#chattr -ia /etc/ssh/sshd_config
 
 #Gets the current ssh configuration from the file
 currentConfig=$(cat /etc/ssh/sshd_config)
